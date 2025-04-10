@@ -3,10 +3,10 @@ import pickle
 import pandas as pd
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Load the trained ML model
-model = pickle.load(open("admission_model.pkl", "rb"))
+model = pickle.load(open("model.pkl", "rb"))
 
 @app.route("/")
 def home():
@@ -35,6 +35,6 @@ def predict():
     return render_template("index.html", result=result)
 
 # Use 0.0.0.0 and a dynamic port for Render
-if _name_ == "_main_":
+if __name__ == "_main_":
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host="0.0.0.0", port=port)
